@@ -26,7 +26,7 @@ export class ClientComponent {
     form = new FormGroup({
     name: new FormControl('',Validators.required),
     telephone: new FormControl('',Validators.required),
-    email: new FormControl('',Validators.email),
+    email: new FormControl('',[Validators.required, Validators.email]),
   });
   addressData: ClientAddress[] = [];
 
@@ -47,7 +47,7 @@ export class ClientComponent {
 
 
    generateId() {
-     return Math.floor(Math.random() * 1000)
+     return Math.floor(Math.random() * 1000).toString();
    }
 
    getAddesssData(addressData: any) {

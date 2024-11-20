@@ -6,7 +6,7 @@
         <label for="name">Name:</label>
         <input formControlName="name" type="text" id="name" class="form-control">
         <div *ngIf="name?.invalid && name?.touched">
-            <div *ngIf="email?.errors?.['required']" class="alert alert-danger">
+            <div *ngIf="name?.errors?.['required']" class="alert alert-danger">
                 The name field cannot be blank.
             </div>
         </div>
@@ -15,18 +15,20 @@
         <label for="telephone">Phone number:</label>
         <input formControlName="telephone" type="text" id="telephone" class="form-control">
         <div *ngIf="telephone?.invalid && telephone?.touched" class="alert alert-danger">
-            <div *ngIf="email?.errors?.['required']"> The phone number is required.</div>
+            <div *ngIf="telephone?.errors?.['required']"> The phone number is required.</div>
         </div>
     </div>
     <div class="form-gropup mb-5">
         <label for="email">Email:</label>
         <input formControlName="email" type="text" id="email" class="form-control">
         <div *ngIf="email?.invalid && email?.touched" class="alert alert-danger">
+            <div *ngIf="email?.errors?.['required']"> Email is required.</div>
             <div *ngIf="email?.errors?.['email']">The email is not valid.</div>
         </div>
     </div>
 
     <app-client-address (addressData)="getAddesssData($event)"></app-client-address>
 
-    <div><button [disabled]="form.invalid" type="submit" class="btn btn-primary mt-3">Save</button></div>
+    <div><button [disabled]="form?.invalid || addressData?.length === 0" type="submit"
+            class="btn btn-primary mt-3">Save</button></div>
 </form>

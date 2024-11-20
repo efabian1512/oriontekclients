@@ -23,15 +23,23 @@
                     <td>{{client?.['name']}}</td>
                     <td>{{client?.['telephone']}}</td>
                     <td>{{client?.['email']}}</td>
+                    <td><button (click)="openAddressModal(client?.['id'])" type="button"
+                            class="btn btn-link text-decoration-none">See Adress(es) Catalog</button>
+                    </td>
+
                 </tr>
             </ng-container>
 
             <ng-template #norecords>
                 <tr>
-                    <td class="text-center" colspan="3">No Clients Found</td>
+                    <td class="text-center" [colSpan]="tableColumns.length">No Clients Found</td>
                 </tr>
             </ng-template>
 
         </tbody>
     </table>
+
+    <app-table-modal [client]="client!" (toggleModal)="closeModal($event)" [isModalOpen]="isModalOpen"
+        [data]="addressCatalogData">
+    </app-table-modal>
 </div>

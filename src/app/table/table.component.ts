@@ -12,7 +12,7 @@ import { TableColumnConfig } from './table-configs';
 })
 export class TableComponent {
 
-  @Input() data: {[key: string]: string}[] | {[key: string]: string | Date}[]  = [];
+  @Input() data: {[key: string]: string}[] | {[key: string]: string}[]  = [];
 
   @Input() tableConfig: TableColumnConfig[] = [];
 

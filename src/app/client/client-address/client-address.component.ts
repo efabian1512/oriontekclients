@@ -56,7 +56,7 @@ export class ClientAddressComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(formValue: any) {
-    this.data = [...this.data, formValue];
+    this.data = [...this.data,{ ...formValue, addressLine1: `${formValue.addressLine1}, ${formValue.addressLine2}` }];
     this.isModalOpen = false;
     this.form.reset();
     this.addressData.emit(this.data);
