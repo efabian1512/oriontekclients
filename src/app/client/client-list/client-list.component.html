@@ -7,7 +7,7 @@
         <a class="btn btn-primary mb-5 d-" routerLink="client">Add New Client</a>
     </div>
     <div class="mb-3">
-        <input #query (keyup)="filter(query?.value)" type="text" class="form-control" placeholder="Search....">
+        <input #query (keyup)="filter(query?.value)" type="text" class="form-control" placeholder="Search client....">
     </div>
 
     <table class="table table-striped table-bordered">
@@ -27,8 +27,8 @@
                     <td><button (click)="openAddressModal(client?.['id'])" type="button"
                             class="btn btn-link text-decoration-none">See Adress(es) Catalog</button>
                     </td>
-                    <td><a class="text-decoration-none text-center"
-                            [routerLink]="['client/edit',client?.['id']]">Edit</a></td>
+                    <td><a class="text-decoration-none text-center" [routerLink]="['client/edit',client?.['id']]"><i
+                                style="color: black;" title="Edit" class="bi blc bi-pencil-fill clickable"></i></a></td>
 
                 </tr>
             </ng-container>
