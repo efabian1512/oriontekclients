@@ -1,0 +1,67 @@
+<form [formGroup]="form">
+    <ng-container *ngFor="let control of controls">
+        @switch (control.controlType) {
+        @case ('select') { <div class="mb-3 fw-bold">
+            <label htmlFor="sex" class="form-label fw-bold">{{control.label}}</label>
+            <select [formControlName]="control['controlName']" class="form-select mr-1" id="sex">
+                <option value=""></option>
+                <option *ngFor="let option of control.selectOptions" [value]="option.value">{{option.label}}
+                </option>
+            </select>
+            <div *ngIf="form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched"
+                class="alert alert-danger mt-2">
+                <ng-container *ngFor="let validator of control.validators">
+                    <div *ngIf="form.get(control.controlName)?.errors?.[validator.name]">{{validator.errorMessage}}
+                    </div>
+                    <ng-container *ngIf="validator.formLevelValidator">
+                        <div *ngIf="form?.errors?.[validator.name]">{{validator.errorMessage}}</div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <ng-container
+                *ngIf="form.get(control.controlName)?.valid && form.get(control.controlName)?.touched && control?.hasFormLevelValidator"
+                class="alert alert-danger mt-2">
+                <ng-container *ngFor="let validator of control.validators">
+                    <ng-container *ngIf="validator.formLevelValidator">
+                        <div *ngIf="form?.errors" class="alert alert-danger mt-2">
+                            <div *ngIf="form?.errors?.[validator.name]">{{validator.errorMessage}}</div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+        }
+        @default {
+        <div class="mb-3 fw-bold">
+            <label [htmlFor]="control['controlName']" class="form-label">{{control.label}}</label>
+            <input [formControlName]="control.controlName" [type]="control.inputType" class="form-control"
+                [id]="control['controlName']" />
+            <div *ngIf="form.get(control.controlName)?.invalid && form.get(control.controlName)?.touched"
+                class="alert alert-danger mt-2">
+                <ng-container *ngFor="let validator of control.validators">
+                    <div *ngIf="form.get(control.controlName)?.errors?.[validator.name]">{{validator.errorMessage}}
+                    </div>
+                    <ng-container *ngIf="validator.formLevelValidator">
+                        <div *ngIf="form?.errors?.[validator.name]">{{validator.errorMessage}}</div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <ng-container
+                *ngIf="form.get(control.controlName)?.valid && form.get(control.controlName)?.touched && control?.hasFormLevelValidator"
+                class="alert alert-danger mt-2">
+                <ng-container *ngFor="let validator of control.validators">
+                    <ng-container *ngIf="validator.formLevelValidator">
+                        <div *ngIf="form?.errors" class="alert alert-danger mt-2">
+                            <div *ngIf="form?.errors?.[validator.name]">{{validator.errorMessage}}</div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </div>
+        }
+
+        }
+    </ng-container>
+</form>
