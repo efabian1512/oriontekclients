@@ -7,18 +7,19 @@ import { BadInput } from '../commons/bad-input';
 import { AppError } from '../commons/app-error';
 import { Store } from '@ngrx/store';
 import { AppState } from '../states/app.state';
-import { addClient, updateClient } from './client-state-management/client.action';
+import { addClient, deleteClient, updateClient } from './client-state-management/client.action';
 import { CommonModule } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 import { ClientAddressComponent } from './client-address/client-address.component';
 import { selectClientsState } from './client-state-management/client.selector';
 import { Observable } from 'rxjs';
 import { ClientState } from './client-state-management/client.reducer';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, ClientAddressComponent],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, ClientAddressComponent, ConfirmationModalComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css'
 })
@@ -33,6 +34,7 @@ export class ClientComponent {
     email: new FormControl('',[Validators.required, Validators.email]),
   });
   addressData: ClientAddress[] = [];
+  isModalOpen: boolean = false;
 
   constructor(
     private store: Store<AppState>, 
@@ -55,7 +57,7 @@ export class ClientComponent {
     } else {
         this.store.dispatch(addClient({payload: {...client, id: this.generateId(), addressesInfo: [...this.addressData]}}));
     }
-     this.router.navigate(['/']);
+     this.navigateHome();
    }
 
 
@@ -82,11 +84,32 @@ export class ClientComponent {
    }
 
    delete() {
+    if(this.id) {
+      this.store.dispatch(deleteClient({payload: {clientId: this.id}}));
+      this.navigateHome();
 
+    }
+   }
+
+   openModal() {
+     this.isModalOpen = true;
    }
 
    onCancel() {
-     this.router.navigate(['/']);
+     this.navigateHome();
+   }
+
+   navigateHome() {
+    this.router.navigate(['/']);
+   }
+
+   onConfirmDeletion(value: boolean) {
+    if(value) {
+      this.delete();
+      this.isModalOpen = false;
+    } else {
+      this.isModalOpen = false;
+    }
    }
   
 
