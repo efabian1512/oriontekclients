@@ -16,6 +16,10 @@ export interface UpdateClientAction {
     idToUpdate: string;
 }
 
+export interface DeleteClientAction {
+    clientId: string;
+}
+
 export interface ClientAddress {
     addressLine1: string;
     addressLine2?: string;

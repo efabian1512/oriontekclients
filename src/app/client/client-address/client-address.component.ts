@@ -11,6 +11,8 @@ import { AddressService } from './address-service/address.service';
 import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { Input } from '@angular/core';
+import { AppError } from '../../commons/app-error';
+import { BadInput } from '../../commons/bad-input';
 
 @Component({
   selector: 'app-client-address',
@@ -57,7 +59,12 @@ export class ClientAddressComponent implements OnInit, OnDestroy {
       const countriesformatted = this.addressService.setCountryFirst(countries?.sort(this.addressService.sortCountries)!);
       const countryControl = this.modalFormConfig.controls.find(control => control.controlName === 'country');
       countryControl!.selectOptions = countriesformatted.map((country: any) => ({value: country.fifa , label: country.name.common}));
-  })!;
+  }, (error: AppError) =>{
+      if(error instanceof BadInput){
+        this.form.setErrors(error.originalError);
+      }
+      else throw error;
+    })!;
   }
 
   onSubmit(formValue: any) {
