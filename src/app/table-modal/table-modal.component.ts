@@ -18,7 +18,7 @@ export class TableModalComponent {
 
   @Input() data: any = [];
   @Input() isModalOpen!: boolean;
-  @Input() client!: Client;
+  @Input() client: Client | undefined;
 
   @Output() toggleModal: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 

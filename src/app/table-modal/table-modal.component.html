@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" [ngClass]="{'collapse': !isModalOpen }">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 fw-bold" id="exampleModalCenteredScrollableTitle">
-                    Address Catalog for {{client?.['name']}}</h1>
+                <h1 *ngIf="client" class="modal-title fs-5 fw-bold" id="exampleModalCenteredScrollableTitle">
+                    Address Catalog for {{client['name']}}</h1>
                 <button (click)="onClose()" type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>

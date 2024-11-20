@@ -10,6 +10,7 @@ import { OnDestroy } from '@angular/core';
 import { AddressService } from './address-service/address.service';
 import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-client-address',
@@ -35,11 +36,15 @@ export class ClientAddressComponent implements OnInit, OnDestroy {
     postalCode: new FormControl('', [Validators.required]),
   });
 
+  @Input() addressInfoData?: any;
   @Output() addressData: EventEmitter<ClientAddress[]> = new EventEmitter<ClientAddress[]>();
 
   constructor(private addressService: AddressService){}
 
   ngOnInit() {
+    if(this.addressInfoData) {
+      this.data = this.addressInfoData;
+    }
     this.getCountries();
   }
 

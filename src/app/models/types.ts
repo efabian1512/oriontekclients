@@ -11,6 +11,11 @@ export interface Client {
     addressesInfo: ClientAddress[];
 };
 
+export interface UpdateClientAction {
+    client: Client;
+    idToUpdate: string;
+}
+
 export interface ClientAddress {
     addressLine1: string;
     addressLine2?: string;

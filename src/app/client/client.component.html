@@ -27,8 +27,14 @@
         </div>
     </div>
 
-    <app-client-address (addressData)="getAddesssData($event)"></app-client-address>
+    <app-client-address [addressInfoData]="addressData" (addressData)="getAddesssData($event)"></app-client-address>
 
-    <div><button [disabled]="form?.invalid || addressData?.length === 0" type="submit"
-            class="btn btn-primary mt-3">Save</button></div>
+    <div class="mt-3">
+        <button [disabled]="form.invalid || addressData.length === 0" type="submit"
+            class="btn btn-primary me-2 button-custom-width">
+            Save
+        </button>
+        <button *ngIf="id" type="button" class="btn btn-danger button-custom-width" (click)="delete()">Delete</button>
+        <button (click)="onCancel()" class="btn btn-secondary float-end button-custom-width">Cancel</button>
+    </div>
 </form>
