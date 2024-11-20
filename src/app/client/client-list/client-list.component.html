@@ -1,0 +1,37 @@
+<div class="client-list-main-container">
+    <div class="mb-3">
+        <h1>Manage Clients</h1>
+    </div>
+
+    <div>
+        <a class="btn btn-primary mb-5 d-" routerLink="client">Add New Client</a>
+    </div>
+    <div class="mb-3">
+        <input #query (keyup)="filter(query?.value)" type="text" class="form-control" placeholder="Search....">
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th *ngFor="let column of tableColumns">{{column?.title}}</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            <ng-container *ngIf="filteredClients.length > 0;else norecords">
+                <tr *ngFor="let client of filteredClients">
+                    <td>{{client?.['name']}}</td>
+                    <td>{{client?.['telephone']}}</td>
+                    <td>{{client?.['email']}}</td>
+                </tr>
+            </ng-container>
+
+            <ng-template #norecords>
+                <tr>
+                    <td class="text-center" colspan="3">No Clients Found</td>
+                </tr>
+            </ng-template>
+
+        </tbody>
+    </table>
+</div>
