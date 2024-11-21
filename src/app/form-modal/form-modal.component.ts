@@ -17,6 +17,7 @@ export class FormModalComponent {
    @Input() form!: FormGroup;
    @Input() modalFormConfig!:  DynamicConfig;
    @Input() isModalOpen!: boolean;
+   @Input() isUpdating?: boolean;
 
    @Output() toggleModal: EventEmitter<boolean> = new EventEmitter<boolean>(false);
    @Output() formData: EventEmitter<any> = new EventEmitter<any>();

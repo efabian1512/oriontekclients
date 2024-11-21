@@ -38,6 +38,7 @@
             (click)="openModal()">Delete</button>
         <button (click)="onCancel()" class="btn btn-secondary float-end button-custom-width">Cancel</button>
     </div>
-    <app-confirmation-modal [isModalOpen]="isModalOpen" (confirmationResponse)="onConfirmDeletion($event)">
+    <app-confirmation-modal [message]="'Are you sure you want to delete this client?'" [isModalOpen]="isModalOpen"
+        (confirmationResponse)="onConfirmDeletion($event)">
     </app-confirmation-modal>
 </form>

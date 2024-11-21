@@ -27,6 +27,7 @@ export interface ClientAddress {
     state: string;
     postalCode: string;
     country: string;
+    addressId: string;
 }
 
  export interface DynamicFormControl {
@@ -61,9 +62,16 @@ export interface ClientAddress {
   export interface ActionsButtons {
     cancelLabel: string;
     proceedLabel: string;
+    proceedUpdateLabel?: string;
+    isUpdating?: IsUpdating;
  }
 
  export interface Country {
         name: {common: string},
         fifa: string
+ }
+
+ interface IsUpdating {
+     true: boolean;
+     false: boolean;
  }

@@ -1,14 +1,24 @@
 <table *ngIf="data && data.length > 0" class="table table-bordered table-striped mt-3 mb-5">
     <thead>
         <tr>
-            <th *ngFor="let column of tableConfig" class="fw-bold">{{column?.['columnName']}}</th>
+            <th *ngFor="let column of tableConfig.tableSetup" class="fw-bold">{{column?.['columnName']}}</th>
+            <th *ngIf="actionControls"></th>
         </tr>
     </thead>
     <tbody>
         <ng-container>
             <tr *ngFor="let item of data">
-                <td *ngFor="let column of tableConfig">{{item[column['property']]}}</td>
+                <td *ngFor="let column of tableConfig.tableSetup">{{item[column['property']]}}</td>
+                <td *ngIf="actionControls">
+                    <i *ngIf="tableConfig.actionsProperty"
+                        (click)="openFormModalOnEdition(item[tableConfig.actionsProperty])" style="color: black;"
+                        title="Edit Address" class="bi blc bi-pencil-fill me-3 clickable"> </i>
+                    <i *ngIf="tableConfig.actionsProperty" (click)="onDelete(item[tableConfig.actionsProperty])"
+                        title="Delete Address" class="bi bi-trash3-fill clickable"></i>
+                </td>
             </tr>
         </ng-container>
     </tbody>
 </table>
+<app-confirmation-modal [message]="'Are you sure you want to delete this address?'" [isModalOpen]="isDeleteModalOpen"
+    (confirmationResponse)="onConfirmDeletion($event)"></app-confirmation-modal>

@@ -2,7 +2,7 @@ import { DynamicConfig } from "../models/types";
 
 export const CLIENT_ADDRESSES_FORM_CONFIG: DynamicConfig = { 
     mainTitle: 'Add Address',
-    buttons: {cancelLabel: 'Cancel', proceedLabel: 'Add'}, 
+    buttons: {cancelLabel: 'Cancel', proceedLabel: 'Add', proceedUpdateLabel: 'Update', isUpdating: {true: true, false: false}}, 
     controls: [
     {
       controlName: 'addressLine1', controlType: 'textbox',

@@ -1,7 +1,8 @@
 <button type="button" (click)="toggleModal(true)" class="btn btn-primary mb-2">Add address(es)</button>
 
-<app-table [data]="data" [tableConfig]="tableConfig"></app-table>
+<app-table (onElementDelete)="onDeleteAddress($event)" (openModalOnEdition)="openFormModalOnEdition($event)"
+    [data]="data" [actionControls]="true" [tableConfig]="tableConfig"></app-table>
 
-<app-form-modal (toggleModal)="toggleModal($event)" [modalFormConfig]="modalFormConfig" (formData)="onSubmit($event)"
-    [form]="form" [isModalOpen]="isModalOpen">
+<app-form-modal [isUpdating]="isUpdatingInput" (toggleModal)="toggleModal($event)" [modalFormConfig]="modalFormConfig"
+    (formData)="onSubmit($event)" [form]="form" [isModalOpen]="isModalOpen">
 </app-form-modal>

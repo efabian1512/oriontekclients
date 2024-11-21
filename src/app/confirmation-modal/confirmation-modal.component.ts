@@ -11,6 +11,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ConfirmationModalComponent {
 
    @Input() isModalOpen!: boolean;
+   @Input() message!: string;
 
    @Output() confirmationResponse: EventEmitter<boolean> = new EventEmitter<boolean>(false);
 

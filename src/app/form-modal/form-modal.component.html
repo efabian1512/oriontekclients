@@ -14,8 +14,8 @@
             <div class="modal-footer">
                 <button (click)="onClose()" type="button" class="btn btn-secondary"
                     data-bs-dismiss="modal">{{modalFormConfig.buttons.cancelLabel}}</button>
-                <button (click)="onSubmit()" [disabled]="form.invalid" type="button"
-                    class="btn btn-primary">{{modalFormConfig.buttons.proceedLabel}}</button>
+                <button (click)="onSubmit()" [disabled]="form.invalid" type="button" class="btn btn-primary">{{
+                    isUpdating ? 'Update' : modalFormConfig.buttons.proceedLabel}}</button>
             </div>
         </div>
     </div>

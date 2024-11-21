@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Input } from '@angular/core';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Client } from '../models/types';
-import { CLIENT_ADDRESSES_TABLE_CONFIG, TableColumnConfig } from '../table/table-configs';
+import { CLIENT_ADDRESSES_TABLE_CONFIG, TableConfig } from '../table/table-configs';
 import { TableComponent } from '../table/table.component';
 
 @Component({
@@ -14,7 +13,7 @@ import { TableComponent } from '../table/table.component';
 })
 export class TableModalComponent {
 
-  tableConfig: TableColumnConfig[] = CLIENT_ADDRESSES_TABLE_CONFIG;
+  tableConfig: TableConfig = CLIENT_ADDRESSES_TABLE_CONFIG;
 
   @Input() data: any = [];
   @Input() isModalOpen!: boolean;
